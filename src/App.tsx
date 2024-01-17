@@ -5,7 +5,6 @@ import {
   CardBody,
   Container,
   Flex,
-  FormControl,
   Input,
   InputGroup,
   InputRightElement,
@@ -13,11 +12,16 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function App() {
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState("");
+interface Todo {
+  id: number;
+  text: String;
+}
 
-  const addItem = (e) => {
+function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [newTodo, setNewTodo] = useState<string>("");
+
+  const addItem = (e: any) => {
     e.preventDefault();
     if (newTodo.trim() === "") {
       return false;
@@ -26,7 +30,7 @@ function App() {
     setTodos([...todos, { id: Date.now(), text: newTodo }]);
     setNewTodo("");
   };
-  const deleteItem = (id) => {
+  const deleteItem = (id: Number) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
   return (
