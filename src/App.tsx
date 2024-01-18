@@ -11,27 +11,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-
-interface Todo {
-  id: number;
-  text: String;
-}
+import { useTodoContext } from "./Context/TodoContext";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const { todos, addTodo, deleteTodo } = useTodoContext();
   const [newTodo, setNewTodo] = useState<string>("");
 
   const addItem = (e: any) => {
     e.preventDefault();
-    if (newTodo.trim() === "") {
-      return false;
-    }
-
-    setTodos([...todos, { id: Date.now(), text: newTodo }]);
+    if (newTodo.trim() === "") return false;
+    addTodo(newTodo);
     setNewTodo("");
-  };
-  const deleteItem = (id: Number) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
   return (
     <Container maxW="2xl" alignItems={"center"}>
@@ -61,7 +51,7 @@ function App() {
             <Flex justifyContent={"space-between"} alignItems={"center"}>
               <Text>{todo.text}</Text>
               <Button>
-                <DeleteIcon onClick={() => deleteItem(todo.id)} boxSize={4} />
+                <DeleteIcon onClick={() => deleteTodo(todo.id)} boxSize={4} />
               </Button>
             </Flex>
           </CardBody>
