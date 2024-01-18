@@ -1,4 +1,4 @@
-import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { AddIcon, CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -16,7 +16,7 @@ import Todo from "../../interfaces/Todo";
 const Task: FC<Todo> = ({ id, text }) => {
   const { deleteTodo, updateTodo } = useTodoContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [newValue, setNewValue] = useState<string>("");
+  const [newValue, setNewValue] = useState<string>(text);
   return (
     <Card key={id} variant={"outline"} width={"100%"} marginY={"4"}>
       <CardBody>
@@ -64,7 +64,7 @@ const Task: FC<Todo> = ({ id, text }) => {
                     height="4.3rem"
                     width="4.3rem"
                   >
-                    <AddIcon />
+                    <CheckIcon />
                   </Button>
                 </InputRightElement>
               </InputGroup>
