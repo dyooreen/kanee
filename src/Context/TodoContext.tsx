@@ -5,6 +5,7 @@ interface TodoContextProps {
   todos: Todo[];
   addTodo: (text: string) => void;
   deleteTodo: (id: number) => void;
+  updateTodo: (id: number, newText: string) => void;
 }
 const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 
@@ -20,9 +21,15 @@ export const TodoProvider: React.FC<{ children: ReactNode }> = ({
   const deleteTodo = (id: number) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
-
+  const updateTodo = (id: number, newText: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
   return (
-    <TodoContext.Provider value={{ todos, addTodo, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, addTodo, deleteTodo, updateTodo }}>
       {children}
     </TodoContext.Provider>
   );
