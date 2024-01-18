@@ -13,7 +13,7 @@ const TodoList: FC = () => {
             <Flex justifyContent={"space-between"} alignItems={"center"}>
               <Text>{todo.text}</Text>
               <Button>
-                <DeleteIcon onClick={() => deleteTodo(todo.id)} boxSize={4} />
+                <DeleteIcon color={"red"} onClick={() => deleteTodo(todo.id)} boxSize={4} />
               </Button>
             </Flex>
           </CardBody>
