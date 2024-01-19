@@ -8,7 +8,7 @@ function App() {
       <CreateTask />
       <TodoList />
     </Container>
-  );
+);
 }
 
 export default App;

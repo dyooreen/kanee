@@ -27,7 +27,8 @@ const CreateTask = () => {
             onClick={addItem}
             type="submit"
             height="4.3rem"
-            name="add todo"
+            role="button"
+            name="createTask"
             width="4.3rem"
           >
             <AddIcon />

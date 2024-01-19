@@ -1,4 +1,4 @@
-import { AddIcon, CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import {  CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -31,7 +31,7 @@ const Task: FC<Todo> = ({ id, text }) => {
             >
               <EditIcon boxSize={4} />
             </Button>
-            <Button onClick={() => deleteTodo(id)}>
+            <Button data-testid="delete-element" onClick={() => deleteTodo(id)}>
               <DeleteIcon color={"red"} boxSize={4} />
             </Button>
           </Flex>
