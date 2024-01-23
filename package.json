@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
     "test": "jest",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -29,6 +30,7 @@
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "@vite-pwa/assets-generator": "^0.2.3",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
@@ -40,6 +42,7 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-pwa": "^0.17.4"
   }
 }
