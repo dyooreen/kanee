@@ -1,4 +1,4 @@
-import {  CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -16,24 +16,48 @@ import Todo from "../../interfaces/Todo";
 const Task: FC<Todo> = ({ id, text }) => {
   const { deleteTodo, updateTodo } = useTodoContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isDone, setIsDone] = useState<boolean>(false);
   const [newValue, setNewValue] = useState<string>(text);
   return (
-    <Card key={id} variant={"outline"} width={"100%"} marginY={"4"}>
+    <Card
+      key={id}
+      variant={"outline"}
+      width={"100%"}
+      marginY={"4"}
+      bg={isDone ? "green.400" : "whiteAlpha"}
+    >
       <CardBody>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
-          <Text>{text}</Text>
-          <Flex>
+          <Flex alignItems={"center"}>
             <Button
               marginRight={"4"}
-              onClick={() => {
-                setIsEditing((e) => !e);
-              }}
+              bg={isDone ? "green.400" : "whiteAlpha"}
+              textColor={isDone ? "white" : "green.400"}
+              onClick={() => setIsDone((p) => !p)}
             >
-              <EditIcon boxSize={4} />
+              <CheckIcon />
             </Button>
-            <Button data-testid="delete-element" onClick={() => deleteTodo(id)}>
-              <DeleteIcon color={"red"} boxSize={4} />
-            </Button>
+            <Text>{text}</Text>
+          </Flex>
+          <Flex>
+            {!isDone && (
+              <>
+                <Button
+                  marginRight={"4"}
+                  onClick={() => {
+                    setIsEditing((e) => !e);
+                  }}
+                >
+                  <EditIcon boxSize={4} />
+                </Button>
+                <Button
+                  data-testid="delete-element"
+                  onClick={() => deleteTodo(id)}
+                >
+                  <DeleteIcon color={"red"} boxSize={4} />
+                </Button>
+              </>
+            )}
           </Flex>
         </Flex>
         {isEditing && (
