@@ -1,4 +1,10 @@
-import React, { createContext, useContext, ReactNode, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 import Todo from "../interfaces/Todo";
 
 interface TodoContextProps {
@@ -12,8 +18,14 @@ const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 export const TodoProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
+  const getInitialState = () => {
+    const todos = localStorage.getItem("todos");
+    return todos ? JSON.parse(todos) : [];
+  };
+  const [todos, setTodos] = useState<Todo[]>(getInitialState);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   const addTodo = (text: string) => {
     setTodos((prevTodos) => [...prevTodos, { id: Date.now(), text }]);
   };
