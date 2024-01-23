@@ -13,10 +13,9 @@ import { useTodoContext } from "../../Context/TodoContext";
 import { FC, useState } from "react";
 import Todo from "../../interfaces/Todo";
 
-const Task: FC<Todo> = ({ id, text }) => {
-  const { deleteTodo, updateTodo } = useTodoContext();
+const Task: FC<Todo> = ({ id, text, isCompleted }) => {
+  const { deleteTodo, updateText, updateIsCompleted } = useTodoContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isDone, setIsDone] = useState<boolean>(false);
   const [newValue, setNewValue] = useState<string>(text);
   return (
     <Card
@@ -24,23 +23,23 @@ const Task: FC<Todo> = ({ id, text }) => {
       variant={"outline"}
       width={"100%"}
       marginY={"4"}
-      bg={isDone ? "green.400" : "whiteAlpha"}
+      bg={isCompleted ? "green.400" : "whiteAlpha"}
     >
       <CardBody>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex alignItems={"center"}>
             <Button
               marginRight={"4"}
-              bg={isDone ? "green.400" : "whiteAlpha"}
-              textColor={isDone ? "white" : "green.400"}
-              onClick={() => setIsDone((p) => !p)}
+              bg={isCompleted ? "green.400" : "whiteAlpha"}
+              textColor={isCompleted ? "white" : "green.400"}
+              onClick={() => updateIsCompleted(id, !isCompleted)}
             >
               <CheckIcon />
             </Button>
             <Text>{text}</Text>
           </Flex>
           <Flex>
-            {!isDone && (
+            {!isCompleted && (
               <>
                 <Button
                   marginRight={"4"}
@@ -81,7 +80,7 @@ const Task: FC<Todo> = ({ id, text }) => {
                     onClick={(e) => {
                       e.preventDefault();
                       if (newValue.trim() === "") return false;
-                      updateTodo(id, newValue);
+                      updateText(id, newValue);
                       setIsEditing(false);
                     }}
                     type="submit"
