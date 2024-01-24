@@ -20,7 +20,7 @@ const CreateTask = () => {
           onChange={(e) => setNewTodo(e.target.value)}
           height="4.5rem"
           value={newTodo}
-          placeholder="what need to do"
+          placeholder="add task"
         />
         <InputRightElement height="4.5rem" width="4.5rem">
           <Button
