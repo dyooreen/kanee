@@ -7,10 +7,10 @@ const TodoList: FC = () => {
   const { todos } = useTodoContext();
   return (
     <>
-      <Tabs isFitted variant="soft-rounded" colorScheme="green">
+      <Tabs isFitted defaultIndex={1} variant="soft-rounded" colorScheme="green">
         <TabList height={"20"} mb="1em">
           <Tab>Yesterday</Tab>
-          <Tab>Today</Tab>
+          <Tab >Today</Tab>
           <Tab>Tomorrow</Tab>
         </TabList>
         <TabPanels>
