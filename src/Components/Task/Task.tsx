@@ -24,27 +24,32 @@ const Task: FC<Todo> = ({ id, text, isCompleted }) => {
       width={"100%"}
       minHeight={"20"}
       marginY={"4"}
-      bg={isCompleted ? "green.400" : "whiteAlpha"}
+      bg={isCompleted ? "green.200" : "whiteAlpha"}
     >
       <CardBody>
         <Flex
           justifyContent={"space-between"}
           alignItems={"center"}
-          marginLeft={!isCompleted ? "4" : ""}
           minHeight={"10"}
         >
           <Flex alignItems={"center"}>
             {new Date(id).getDate() == new Date().getDate() && (
               <Button
                 marginRight={"4"}
-                bg={isCompleted ? "green.400" : "whiteAlpha"}
-                textColor={isCompleted ? "white" : "green.400"}
+                bg={isCompleted ? "green.200" : "whiteAlpha"}
+                _hover={{ bg: "green.200", textColor: "white" }}
+                textColor={isCompleted ? "white" : "green.200"}
                 onClick={() => updateIsCompleted(id, !isCompleted)}
               >
                 <CheckIcon />
               </Button>
             )}
-            <Text>{text}</Text>
+            <Text
+              textColor={isCompleted ? "green.700" : "gray.600"}
+              fontWeight={"semibold"}
+            >
+              {text}
+            </Text>
           </Flex>
           <Flex>
             {!isCompleted &&
