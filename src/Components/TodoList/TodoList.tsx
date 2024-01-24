@@ -2,16 +2,26 @@ import { FC } from "react";
 import { useTodoContext } from "../../Context/TodoContext";
 import Task from "../Task/Task";
 import { TabList, Tab, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 const TodoList: FC = () => {
   const { todos } = useTodoContext();
   return (
     <>
-      <Tabs isFitted defaultIndex={1} variant="soft-rounded" colorScheme="green">
+      <Tabs
+        isFitted
+        defaultIndex={1}
+        variant="soft-rounded"
+        colorScheme="green"
+      >
         <TabList height={"20"} mb="1em">
-          <Tab>Yesterday</Tab>
-          <Tab >Today</Tab>
-          <Tab>Tomorrow</Tab>
+          <Tab>
+            <ChevronLeftIcon boxSize={7} />
+          </Tab>
+          <Tab>Today</Tab>
+          <Tab>
+            <ChevronRightIcon boxSize={7} />
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
