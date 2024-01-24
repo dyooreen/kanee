@@ -22,11 +22,17 @@ const Task: FC<Todo> = ({ id, text, isCompleted }) => {
       key={id}
       variant={"outline"}
       width={"100%"}
+      minHeight={"20"}
       marginY={"4"}
       bg={isCompleted ? "green.400" : "whiteAlpha"}
     >
       <CardBody>
-        <Flex justifyContent={"space-between"} alignItems={"center"}>
+        <Flex
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          marginLeft={!isCompleted ? "4" : ""}
+          minHeight={"10"}
+        >
           <Flex alignItems={"center"}>
             {new Date(id).getDate() == new Date().getDate() && (
               <Button
@@ -41,24 +47,25 @@ const Task: FC<Todo> = ({ id, text, isCompleted }) => {
             <Text>{text}</Text>
           </Flex>
           <Flex>
-            {!isCompleted && (
-              <>
-                <Button
-                  marginRight={"4"}
-                  onClick={() => {
-                    setIsEditing((e) => !e);
-                  }}
-                >
-                  <EditIcon boxSize={4} />
-                </Button>
-                <Button
-                  data-testid="delete-element"
-                  onClick={() => deleteTodo(id)}
-                >
-                  <DeleteIcon color={"red"} boxSize={4} />
-                </Button>
-              </>
-            )}
+            {!isCompleted &&
+              new Date(id).getDate() != new Date().getDate() - 1 && (
+                <>
+                  <Button
+                    marginRight={"4"}
+                    onClick={() => {
+                      setIsEditing((e) => !e);
+                    }}
+                  >
+                    <EditIcon boxSize={4} />
+                  </Button>
+                  <Button
+                    data-testid="delete-element"
+                    onClick={() => deleteTodo(id)}
+                  >
+                    <DeleteIcon color={"red"} boxSize={4} />
+                  </Button>
+                </>
+              )}
           </Flex>
         </Flex>
         {isEditing && (

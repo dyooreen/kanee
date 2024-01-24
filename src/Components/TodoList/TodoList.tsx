@@ -9,10 +9,21 @@ const TodoList: FC = () => {
     <>
       <Tabs isFitted variant="soft-rounded" colorScheme="green">
         <TabList height={"20"} mb="1em">
+          <Tab>Yesterday</Tab>
           <Tab>Today</Tab>
           <Tab>Tomorrow</Tab>
         </TabList>
         <TabPanels>
+          <TabPanel>
+            {todos
+              .filter(
+                (todo) =>
+                  new Date(todo.id).getDate() == new Date().getDate() - 1
+              )
+              .map((todo) => (
+                <Task key={todo.id} {...todo} />
+              ))}
+          </TabPanel>
           <TabPanel>
             {todos
               .filter(
