@@ -28,14 +28,16 @@ const Task: FC<Todo> = ({ id, text, isCompleted }) => {
       <CardBody>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex alignItems={"center"}>
-            <Button
-              marginRight={"4"}
-              bg={isCompleted ? "green.400" : "whiteAlpha"}
-              textColor={isCompleted ? "white" : "green.400"}
-              onClick={() => updateIsCompleted(id, !isCompleted)}
-            >
-              <CheckIcon />
-            </Button>
+            {new Date(id).getDate() == new Date().getDate() && (
+              <Button
+                marginRight={"4"}
+                bg={isCompleted ? "green.400" : "whiteAlpha"}
+                textColor={isCompleted ? "white" : "green.400"}
+                onClick={() => updateIsCompleted(id, !isCompleted)}
+              >
+                <CheckIcon />
+              </Button>
+            )}
             <Text>{text}</Text>
           </Flex>
           <Flex>

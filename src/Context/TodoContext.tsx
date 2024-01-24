@@ -28,9 +28,18 @@ export const TodoProvider: React.FC<{ children: ReactNode }> = ({
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   const addTodo = (text: string) => {
+    let today = new Date();
+
+    let tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    if (tomorrow.getDate() === 1) {
+      tomorrow.setMonth(today.getMonth() + 1);
+    }
+
     setTodos((prevTodos) => [
       ...prevTodos,
-      { id: Date.now(), text, isCompleted: false },
+      { id: new Date(tomorrow).getTime(), text, isCompleted: false },
     ]);
   };
 
