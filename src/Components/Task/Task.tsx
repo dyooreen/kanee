@@ -48,6 +48,7 @@ const Task: FC<Todo> = ({ id, text, isCompleted }) => {
           </Flex>
           <Flex>
             {!isCompleted &&
+              new Date(id).getDate() != new Date().getDate() &&
               new Date(id).getDate() != new Date().getDate() - 1 && (
                 <>
                   <Button
