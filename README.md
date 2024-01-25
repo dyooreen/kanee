@@ -46,4 +46,4 @@ Contributions are welcome! If you find a bug or have a suggestion, please open a
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/dyooreen/kani/blob/main/LICENSE) file for details.
