@@ -1,9 +1,9 @@
 {
-  "name": "kani",
+  "name": "kanee",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dyooreen.github.io/kani",
+  "homepage": "https://dyooreen.github.io/kanee",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
