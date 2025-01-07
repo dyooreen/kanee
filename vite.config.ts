@@ -45,5 +45,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/kani",
+  base: "/kanee",
 });
